@@ -176,7 +176,28 @@ const linkedListHelpers = {
         } else {
             return `Linked list is not empty`
         }
-    }
+    },
+    findPrevious(linkedList, item) {
+        let currNode = linkedList.head
+        let prevNode = currNode
+
+        while(currNode.value !== item) {
+            prevNode = currNode
+            currNode = currNode.next
+        }
+
+        return prevNode
+    },
+    findLast(linkedList) {
+        let currNode = linkedList.head
+
+        while(currNode !== null) {
+            currNode = currNode.next
+            if(currNode.next === null) {
+                return currNode
+            }
+        }
+    },
 }
 
 function main() {
@@ -193,6 +214,8 @@ function main() {
     linkedListHelpers.display(sll)
     console.log(linkedListHelpers.size(sll))
     console.log(linkedListHelpers.isEmpty(sll))
+    console.log(linkedListHelpers.findPrevious(sll, 'tauhida'))
+    console.log(linkedListHelpers.findLast(sll))
 }
 
 main()
