@@ -141,16 +141,12 @@ const linkedListHelpers = {
     display(linkedList) {
         let currNode = linkedList.head
 
-        if(currNode === null) {
-            return `Linked list is empty!`
-        }
-
         while(currNode !== null) {
-            if(currNode.next === null) {
-                return
-            }
-            currNode = currNode.next
+            // if(currNode.next === null) {
+            //     return
+            // }
             console.log(currNode.value)
+            currNode = currNode.next
         }
     },
     size(linkedList) {
@@ -198,7 +194,36 @@ const linkedListHelpers = {
             }
         }
     },
+    // reverseList(linkedList) {
+    //     let currNode = linkedList.head
+    //     let prevNode = currNode
+    //     let firstNode have a next value of null
+    //     have the last node have a next value of th next node
+
+    //     while(currNode !== null) {
+    //         prevNode = currNode
+    //         currNode = currNode.next
+    //     }
+
+    // }
+    thirdFromTheEnd(linkedList) {
+        let currNode = linkedList.head
+
+        let count = 0
+        while(currNode.next !== null) {
+            prevNode = currNode
+            currNode = currNode.next
+            count++
+
+            if(count === linkedListHelpers.size(linkedList) - 3) {
+                // prevNode.next = new _Node(item, currNode)
+                return prevNode
+            }
+        }
+    },
 }
+
+
 
 function main() {
     let sll = new LinkedList()
@@ -208,14 +233,28 @@ function main() {
     sll.insertFirst('helo')
     sll.insertFirst('husker')
     sll.insertFirst('starbuck')
+    sll.insertFirst('string')
+    sll.insertFirst('string2')
+    sll.insertFirst('string3')
     sll.insertLast('tauhida')
-    sll.insertAt('kat', 3)
+    // sll.insertAt('kat', 3)
 
+    // linkedListHelpers.display(sll)
+    // console.log(linkedListHelpers.size(sll))
+    // console.log(linkedListHelpers.isEmpty(sll))
+    // console.log(linkedListHelpers.findPrevious(sll, 'tauhida'))
+    // console.log(linkedListHelpers.findLast(sll))
+    console.log(linkedListHelpers.thirdFromTheEnd(sll))
     linkedListHelpers.display(sll)
-    console.log(linkedListHelpers.size(sll))
-    console.log(linkedListHelpers.isEmpty(sll))
-    console.log(linkedListHelpers.findPrevious(sll, 'tauhida'))
-    console.log(linkedListHelpers.findLast(sll))
 }
 
 main()
+
+
+// drill 4
+// time complexity O(n^2)
+
+//if the next nodes value is equal to the current nodes value
+// the next node next value is going to equal next next
+// checks for duplicates and skips over them, else if not duplicate
+// keep looping
