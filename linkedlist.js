@@ -18,6 +18,7 @@ class LinkedList {
     insertBefore(item, previousItem) {
         if(this.head === null) {
             this.insertFirst(item)
+            return
         }
 
         let currNode = this.head
@@ -33,6 +34,28 @@ class LinkedList {
         }
 
         prevNode.next = new _Node(item, currNode)
+    }
+
+    insertAfter(item, afterNode) {
+        if(this.head === null) {
+            this.insertFirst(item)
+            return
+        }
+
+        let currNode = this.head
+        let prevNode = this.head
+
+        while(currNode.value !== afterNode) {
+            if(currNode.next === null) {
+                return null
+            } else {
+                prevNode = currNode
+                currNode = currNode.next
+            }
+        }
+        let after = currNode.next
+
+        currNode.next = new _Node(item, after)
     }
 
     insertLast(item) {
@@ -112,15 +135,17 @@ class LinkedList {
 function main() {
     let sll = new LinkedList()
 
-    // sll.insertFirst('Apollo')
-    // sll.insertFirst('Boomer')
-    // sll.insertFirst('helo')
+    sll.insertFirst('Apollo')
+    sll.insertFirst('Boomer')
+    sll.insertFirst('helo')
     sll.insertFirst('husker')
     sll.insertFirst('starbuck')
     sll.insertLast('tauhida')
     sll.insertBefore('shoe', 'tauhida')
-    // sll.print()
-    console.log(sll.find('tauhida'))
+    sll.insertAfter('dog', 'tauhida')
+
+    console.log(sll.find('dog'))
+    sll.print()
 }
 
 main()
