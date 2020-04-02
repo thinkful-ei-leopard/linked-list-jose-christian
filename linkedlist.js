@@ -15,6 +15,43 @@ class LinkedList {
         this.head = new _Node(item, this.head)
     }
 
+    insertBefore(item, previousItem) {
+        if(this.head === null) {
+            this.insertFirst(item)
+        }
+
+        let currNode = this.head
+        let prevNode = this.head
+
+        // while(currNode.value !== previousItem && currNode.next !== null) {
+        //     if(currNode.value == previousItem) {
+        //         console.log(currNode.value)
+        //     }
+        // }
+
+        // while(currNode.value !== item) {
+        //     if(currNode.next === null) {
+        //         return null
+        //     } else {
+        //         currNode = currNode.next
+        //     }
+        // }
+
+
+        while((currNode !== null) && (currNode.value !== previousItem)) {
+            if(currNode.next === null) {
+                return null
+            } else {
+                previousNode = currNode
+                currNode = currNode.next
+            }
+            // previousNode = currNode
+            // currNode = currNode.next
+        }
+
+        prevNode.next = new _Node(item, currNode)
+    }
+
     insertLast(item) {
         if(this.head === null) {
             this.insertFirst(item)
@@ -71,4 +108,33 @@ class LinkedList {
 
         previousNode.next = currNode.next
     }
+
+    print() {
+        if(this.head === null) {
+            return console.log('list is empty!')
+        }
+
+        let currNode = this.head
+
+        while(currNode.value !== null) {
+            console.log(currNode.value)
+            currNode = currNode.next
+        }
+    }
 }
+
+function main() {
+    let sll = new LinkedList()
+
+    sll.insertFirst('Apollo')
+    sll.insertFirst('Boomer')
+    sll.insertFirst('helo')
+    sll.insertFirst('husker')
+    sll.insertFirst('starbuck')
+    sll.insertFirst('tauhida')
+    sll.insertBefore('shoe', 'tauhida')
+    // sll.print()
+    console.log(sll.find('helo'))
+}
+
+main()
