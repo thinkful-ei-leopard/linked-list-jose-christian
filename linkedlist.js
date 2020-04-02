@@ -58,6 +58,27 @@ class LinkedList {
         currNode.next = new _Node(item, after)
     }
 
+    insertAt(item, position) {
+        if(position === null || position < 0) {
+            this.insertFirst(item)
+        }
+
+        let currNode = this.head
+        let prevNode = this.head
+        let count = 0
+
+        while(currNode.next !== null) {
+            prevNode = currNode
+            currNode = currNode.next
+            count++
+
+            if(count === position) {
+                prevNode.next = new _Node(item, currNode)
+                return
+            }
+        }
+    }
+
     insertLast(item) {
         if(this.head === null) {
             this.insertFirst(item)
@@ -141,10 +162,11 @@ function main() {
     sll.insertFirst('husker')
     sll.insertFirst('starbuck')
     sll.insertLast('tauhida')
-    sll.insertBefore('shoe', 'tauhida')
-    sll.insertAfter('dog', 'tauhida')
+    // sll.insertBefore('shoe', 'tauhida')
+    // sll.insertAfter('dog', 'tauhida')
 
-    console.log(sll.find('dog'))
+    sll.insertAt('kat', 3)
+    sll.remove('tauhida')
     sll.print()
 }
 
