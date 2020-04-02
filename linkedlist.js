@@ -23,30 +23,13 @@ class LinkedList {
         let currNode = this.head
         let prevNode = this.head
 
-        // while(currNode.value !== previousItem && currNode.next !== null) {
-        //     if(currNode.value == previousItem) {
-        //         console.log(currNode.value)
-        //     }
-        // }
-
-        // while(currNode.value !== item) {
-        //     if(currNode.next === null) {
-        //         return null
-        //     } else {
-        //         currNode = currNode.next
-        //     }
-        // }
-
-
-        while((currNode !== null) && (currNode.value !== previousItem)) {
+        while(currNode.value !== previousItem) {
             if(currNode.next === null) {
                 return null
             } else {
-                previousNode = currNode
+                prevNode = currNode
                 currNode = currNode.next
             }
-            // previousNode = currNode
-            // currNode = currNode.next
         }
 
         prevNode.next = new _Node(item, currNode)
@@ -117,6 +100,9 @@ class LinkedList {
         let currNode = this.head
 
         while(currNode.value !== null) {
+            if(currNode.next === null) {
+                console.log('end')
+            }
             console.log(currNode.value)
             currNode = currNode.next
         }
@@ -126,15 +112,15 @@ class LinkedList {
 function main() {
     let sll = new LinkedList()
 
-    sll.insertFirst('Apollo')
-    sll.insertFirst('Boomer')
-    sll.insertFirst('helo')
+    // sll.insertFirst('Apollo')
+    // sll.insertFirst('Boomer')
+    // sll.insertFirst('helo')
     sll.insertFirst('husker')
     sll.insertFirst('starbuck')
-    sll.insertFirst('tauhida')
+    sll.insertLast('tauhida')
     sll.insertBefore('shoe', 'tauhida')
     // sll.print()
-    console.log(sll.find('helo'))
+    console.log(sll.find('tauhida'))
 }
 
 main()
