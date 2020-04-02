@@ -135,20 +135,46 @@ class LinkedList {
 
         previousNode.next = currNode.next
     }
+}
 
-    print() {
-        if(this.head === null) {
-            return console.log('list is empty!')
+const linkedListHelpers = {
+    display(linkedList) {
+        let currNode = linkedList.head
+
+        if(currNode === null) {
+            return `Linked list is empty!`
         }
 
-        let currNode = this.head
-
-        while(currNode.value !== null) {
+        while(currNode !== null) {
             if(currNode.next === null) {
-                console.log('end')
+                return
             }
-            console.log(currNode.value)
             currNode = currNode.next
+            console.log(currNode.value)
+        }
+    },
+    size(linkedList) {
+        let currNode = linkedList.head
+
+        if(currNode === null) {
+            return `linked list is empty`
+        }
+
+        let count = 0
+        while(currNode !== null) {
+            currNode = currNode.next
+            count++
+        }
+
+        return count
+    },
+    isEmpty(linkedList) {
+        let currNode = linkedList.head
+
+        if(currNode === null) {
+            return `linked list is empty`
+        } else {
+            return `Linked list is not empty`
         }
     }
 }
@@ -162,12 +188,11 @@ function main() {
     sll.insertFirst('husker')
     sll.insertFirst('starbuck')
     sll.insertLast('tauhida')
-    // sll.insertBefore('shoe', 'tauhida')
-    // sll.insertAfter('dog', 'tauhida')
-
     sll.insertAt('kat', 3)
-    sll.remove('tauhida')
-    sll.print()
+
+    linkedListHelpers.display(sll)
+    console.log(linkedListHelpers.size(sll))
+    console.log(linkedListHelpers.isEmpty(sll))
 }
 
 main()
